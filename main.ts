@@ -1,13 +1,13 @@
-function oppsettRadio() {
+function oppsettRadio () {
     radioNivå1 = 119
     radioNivå2 = 124
     radioNivå3 = 135
     radioNivå4 = 141
     radioNivå5 = 158
 }
-function nivåFullført() {
+function nivåFullført () {
     basic.showIcon(IconNames.Yes, 0)
-    for (let index = 0; index < 6; index++) {
+for (let index = 0; index < 6; index++) {
         strip.showColor(neopixel.colors(NeoPixelColors.Green))
         basic.pause(200)
         strip.clear()
@@ -18,9 +18,9 @@ function nivåFullført() {
     nivå += 1
     basic.showNumber(nivå)
 }
-function spillFullført() {
+function spillFullført () {
     basic.showIcon(IconNames.Heart, 0)
-    strip.showRainbow(1, 360)
+strip.showRainbow(1, 360)
     for (let index = 0; index < 240; index++) {
         strip.rotate(1)
         strip.show()
@@ -30,6 +30,19 @@ function spillFullført() {
     strip.show()
     basic.clearScreen()
 }
+input.onButtonPressed(Button.AB, function () {
+    nivå += -1
+    basic.showNumber(nivå)
+    if (nivå == 1) {
+        radio.setGroup(radioNivå1)
+    } else if (nivå == 2) {
+        radio.setGroup(radioNivå2)
+    } else if (nivå == 3) {
+        radio.setGroup(radioNivå2)
+    } else if (nivå == 4) {
+        radio.setGroup(radioNivå4)
+    }
+})
 radio.onReceivedString(function (receivedString) {
     if (nivå == 1 && receivedString == "NEWTON") {
         nivåFullført()
@@ -49,10 +62,10 @@ radio.onReceivedString(function (receivedString) {
         nivåFeilet()
     }
 })
-function nivåFeilet() {
+function nivåFeilet () {
     for (let index = 0; index < 6; index++) {
         basic.showIcon(IconNames.No, 0)
-        strip.showColor(neopixel.colors(NeoPixelColors.Red))
+strip.showColor(neopixel.colors(NeoPixelColors.Red))
         basic.pause(200)
         strip.clear()
         strip.show()
