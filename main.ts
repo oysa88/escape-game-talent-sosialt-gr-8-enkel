@@ -106,4 +106,5 @@ strip = neopixel.create(DigitalPin.P12, 24, NeoPixelMode.RGB)
 nivå = 1
 oppsettOppgaver()
 settRadiogruppeNivå()
+strip.setBrightness(20)
 strip.showColor(neopixel.colors(NeoPixelColors.Yellow))
